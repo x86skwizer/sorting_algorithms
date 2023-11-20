@@ -3,6 +3,7 @@
 /**
  * sorted_list - checks if array is sorted
  * @array: array
+ * @size: size of array
  *
  * Return: 0 if true
  */

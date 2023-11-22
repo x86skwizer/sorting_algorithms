@@ -42,14 +42,14 @@ size_t partition(int array[], size_t size)
 			if (i != j)
 			{
 				swap(&array[i], &array[j]);
-				print_sort(array, size, 0);
+				sort(array, size, 0);
 			}
 		}
 	}
 	if (i + 1 != size - 1)
 	{
 		swap(&array[i + 1], &array[size - 1]);
-		print_sort(array, size, 0);
+		sort(array, size, 0);
 	}
 	return (i + 1);
 }
@@ -57,21 +57,20 @@ size_t partition(int array[], size_t size)
 /**
  * sort - sorting array of int
  * @arr: array
- * @low: index
- * @high: index
- * @size: size of arr
+ * @size: size
+ * @it: index
  */
-void sort(int *arr, int low, int high, int size)
+void sort(int *array, size_t size, int it)
 {
 	static int *p = (void *)0;
 	static size_t s;
 
-	if (!p && init)
+	if (!p && it)
 	{
 		p = array;
 		s = size;
 	}
-	if (!init)
+	if (!it)
 		print_array(p, s);
 }
 
@@ -82,9 +81,11 @@ void sort(int *arr, int low, int high, int size)
  */
 void quick_sort(int *array, size_t size)
 {
+	size_t pivot;
+
 	if (!array || size < 2)
 		return;
-	print_sort(array, size, 1);
+	sort(array, size, 1);
 	pivot = partition(array, size);
 	quick_sort(array, pivot);
 	quick_sort(array + pivot, size - pivot);
